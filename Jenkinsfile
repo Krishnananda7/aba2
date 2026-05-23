@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/krishnananda7/movie-review-app.git'
+                git 'https://github.com/Krishnananda7/aba2.git'
             }
         }
 
