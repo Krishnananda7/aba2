@@ -33,10 +33,10 @@ pipeline {
             }
         }
 
-        stage('Run Application') {
-            steps {
-                sh 'mvn exec:java -Dexec.mainClass="com.movie.review.App"'
-            }
-        }
+       // stage('Run Application') {
+//     steps {
+//         sh 'mvn exec:java -Dexec.mainClass=com.movie.review.App'
+//     }
+// }
     }
 }
