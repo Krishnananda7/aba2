@@ -30,7 +30,7 @@ pipeline {
         success {
             emailext (
                 subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
-                body: "Kubernetes Deployment succeeded!\nCheck: ${BUILD_URL}",
+                body: "movie review succeeded!\nCheck: ${BUILD_URL}",
                 to: "krishnananda127avsk@gmail.com"
             )
         }
