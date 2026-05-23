@@ -26,41 +26,23 @@ pipeline {
             }
         }
     }
-    post {
+       post {
         success {
-            mail to: 'krishnananda127avsk@gmail.com',
-                 subject: "✅ BUILD SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: """
-                 Hi,
-
-                 Build #${env.BUILD_NUMBER} completed successfully!
-
-                 Job      : ${env.JOB_NAME}
-                 Status   : SUCCESS
-                 Duration : ${currentBuild.durationString}
-
-                 Check here: ${env.BUILD_URL}
-
-                 - Jenkins
-                 """
+            emailext (
+                subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: "Kubernetes Deployment succeeded!\nCheck: ${BUILD_URL}",
+                to: "krishnananda127avsk@gmail.com"
+            )
         }
+
         failure {
-            mail to: 'krishnananda127avsk@gmail.com',
-                 subject: "❌ BUILD FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: """
-                 Hi,
-
-                 Build #${env.BUILD_NUMBER} has FAILED!
-
-                 Job      : ${env.JOB_NAME}
-                 Status   : FAILURE
-                 Duration : ${currentBuild.durationString}
-
-                 Check console output: ${env.BUILD_URL}console
-
-                 - Jenkins
-                 """
+            emailext (
+                subject: "FAILED: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: "Pipeline failed!\nCheck: ${BUILD_URL}",
+                to: "krishnananda127avsk@gmail.com"
+            )
         }
+
         always {
             echo 'Pipeline finished.'
         }
